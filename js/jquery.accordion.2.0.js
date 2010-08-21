@@ -11,18 +11,23 @@
     
     $.fn.accordion = function(config) {
         var defaults = {
-            "handle":       "h3",
-            "panel":        ".panel",
-            "accordion":    true,
-            "toggle":       false
+            "handle":           "h3",
+            "panel":            ".panel",
+            "speed":            200,
+            "easing":           "swing",
+            "accordion":        true,
+            "toggle":           false,
+            "activeClassPanel": "open",
+            "activeClassLi":    "active",
+            "lockedClass":      "locked"
         };
         
         if (config) $.extend(defaults, config);
         
-        this.each(function(){
+        this.each(function() {
             var accordion   = $(this),
                 panels      = accordion.find(">li>" + defaults.panel)
-                                .each(function(){
+                                .each(function() {
                                     var el = $(this);
                                     el
                                         .data("dimensions", {
@@ -32,7 +37,7 @@
                                             paddingTop: el.css("paddingTop"),
                                             paddingBottom: el.css("paddingBottom")
                                         })
-                                        .bind("panel-open", function(e, clickedLi){
+                                        .bind("panel-open", function(e, clickedLi) {
                                             var panel = $(this);
                                             panel
                                                 .css({
@@ -51,15 +56,16 @@
                                                     paddingTop: panel.data("dimensions").paddingTop,
                                                     paddingBottom: panel.data("dimensions").paddingBottom
                                                 }, {
-                                                    duration:   "normal",
+                                                    duration:   defaults.speed,
+                                                    easing:     defaults.easing,
                                                     queue:      false,
                                                     complete:   function(){
-                                                        panel.addClass("open");
-                                                        clickedLi.addClass("active");
+                                                        panel.addClass(defaults.activeClassPanel);
+                                                        clickedLi.addClass(defaults.activeClassLi);
                                                     }
                                                 });
                                         })
-                                        .bind("panel-close", function(e, clickedLi){
+                                        .bind("panel-close", function(e, clickedLi) {
                                             var panel = $(this);
                                             panel
                                                 .css({
@@ -72,11 +78,12 @@
                                                     paddingTop: 0,
                                                     paddingBottom: 0
                                                 }, {
-                                                    duration:   "normal",
+                                                    duration:   defaults.speed,
+                                                    easing:     defaults.easing,
                                                     queue:      false, 
                                                     complete:   function(){
-                                                        panel.removeClass("open").hide();
-                                                        clickedLi.removeClass("active");
+                                                        panel.removeClass(defaults.activeClassPanel).hide();
+                                                        clickedLi.removeClass(defaults.activeClassLi);
                                                     }
                                                 })
                                         });
@@ -85,20 +92,35 @@
                                 })
                                 .hide(),
                 handles     = accordion.find(">li>" + defaults.handle)
-                                .wrapInner('<a class="opener" href="#open-panel" />');
+                                .wrapInner('<a class="accordion-opener" href="#open-panel" />');
             
-            accordion.find("> li.active > .panel, > li.expanded > .panel").show().addClass("open");
+            accordion
+                .find("> li." + defaults.activeClassLi + " > " + defaults.panel + ", > li." + defaults.lockedClass + " > " + defaults.panel)
+                .show()
+                .addClass(defaults.activeClassPanel);
             
-            accordion.delegate(".opener", "click", function(e){
+            var active = accordion.find("> li." + defaults.activeClassLi + ", > li." + defaults.lockedClass);
+            
+            if (!defaults.toggle && active.length < 1) {
+                accordion
+                    .find("> li")
+                    .first()
+                    .addClass(defaults.activeClassLi)
+                    .find(" > " + defaults.panel)
+                    .addClass(defaults.activeClassPanel)
+                    .show();
+            }
+            
+            accordion.delegate(".accordion-opener", "click", function(e) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 
                 var clicked     = $(this),
                     clickedLi   = clicked.closest("li"),
                     panel       = clickedLi.find(">" + defaults.panel).first(),
-                    open        = accordion.find(">li:not(.expanded)>" + defaults.panel + ".open");
+                    open        = accordion.find(">li:not(." + defaults.lockedClass + ")>" + defaults.panel + "." + defaults.activeClassPanel);
                 
-                if (!clickedLi.hasClass("expanded")) {
+                if (!clickedLi.hasClass(defaults.lockedClass)) {
                     if (panel.is(":visible")) {
                         if (defaults.toggle) panel.trigger("panel-close", [clickedLi]);
                     } else {
