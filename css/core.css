@@ -1,0 +1,71 @@
+html {
+    background:                 #ccc;
+    filter:                     progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#ccc');
+    background:                 #ccc -webkit-gradient(linear, left top, left bottom, from(#999), to(#ccc)) no-repeat;
+    background:                 #ccc -moz-linear-gradient(top,  #999,  #ccc) no-repeat;
+    -moz-background-size:       100%, 100px;
+    -webkit-background-size:    100%, 100px;
+    background-size:            100%, 100px;
+}
+
+body {
+    color:      #666;
+    font:       14px/1.4 helvetica, "trebuchet ms", sans-serif;
+    padding:    20px;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color:      #333;
+}
+h1 {
+    font-size:  32px;
+    margin:     0 0 20px;
+}
+h2 {
+    border-bottom:  1px solid #ccc;
+    font-size:  24px;
+    margin:     20px 0;
+}
+h3 {
+    font-size:  18px;
+    font-style: italic;
+    margin:     20px 0 5px;
+}
+
+p {
+    margin:     10px 0;
+}
+
+em {
+    font-style: italic;
+}
+
+ul {
+    margin-left:        1em;
+}
+
+li {
+    list-style-type:    disc;
+    margin-left:        1em;
+}
+
+a {
+    color:              #36c;
+    text-decoration:    none;
+}
+a:focus,
+a:hover {
+    text-decoration:    underline;
+}
+
+#page {
+    background:             #fff;
+    width:                  700px;
+    margin:                 0 auto;
+    padding:                20px;
+    text-align:             left;
+    -moz-border-radius:     8px;
+    -webkit-border-radius:  8px;
+    border-radius:          8px;
+}

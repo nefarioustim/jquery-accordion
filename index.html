@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Accordion — Widgets</title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="css/core.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="css/accordion.core.css" type="text/css" charset="utf-8">
+        <style type="text/css">
+            #example1 {
+            }
+                .accordion li h3 a {
+                    background:             #666;
+                    filter:                 progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#666');
+                    background:             #666 -webkit-gradient(linear, left top, left bottom, from(#999), to(#666)) no-repeat;
+                    background:             #666 -moz-linear-gradient(top,  #999,  #666) no-repeat;
+                    border-bottom:          1px solid #333;
+                    border-top:             1px solid #ccc;
+                    color:                  #fff;
+                    display:                block;
+                    margin:                 0;
+                    padding:                5px 10px;
+                    text-shadow:            0 -1px 2px #333, #ccc 0 1px 2px;
+                    -moz-border-radius:     10px;
+                    -webkit-border-radius:  10px;
+                    border-radius:          10px;
+                }
+                #example1 li h3 {
+                    margin:         0;
+                    padding:        0;
+                }
+                #example1 .panel {
+                    padding:        10px;
+                }
+        </style>
+    </head>
+    <body>
+        <div id="page">
+            <h1>Widgets: Accordion</h1>
+            
+            <h2>Example 1</h2>
+            
+            <ul id="example1" class="accordion">
+                <li>
+                    <h3>Handle 1</h3>
+                    <div class="panel">
+                        <p>Panel 1</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3>Handle 2</h3>
+                    <div class="panel">
+                        <p>Panel 2</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3>Handle 3</h3>
+                    <div class="panel">
+                        <p>Panel 3</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <script type="text/javascript" src="js/jquery-1.4.2.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/jquery.accordion.2.0.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $('#example1').accordion();
+        </script>
+    </body>
+</html>
