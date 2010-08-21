@@ -1,7 +1,9 @@
 jQuery Accordion
 ================
 
-This is a customisable accordion widget for jQuery. It gets around the well documented jQuery animation jump issue of slideDown() by just not using it.
+This is a customisable accordion widget for jQuery.
+
+It gets around the [well documented jQuery animation jump issue of slideDown()](http://jqueryfordesigners.com/slidedown-animation-jump-revisited/) by avoiding slideDown() and slideUp() altogether. Hopefully this will allow me to incorporate some nice opener effects at a later date.
 
 Demo
 ----
