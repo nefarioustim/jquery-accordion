@@ -3,7 +3,7 @@ ol.accordion {
     margin:             0;
     padding:            0;
 }
-.accordion li {
+.accordion>li {
     list-style-type:    none;
     margin:             0;
     padding:            0;

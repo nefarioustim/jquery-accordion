@@ -15,7 +15,7 @@ body {
     text-align: center;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     color:      #333;
 }
 h1 {
@@ -31,6 +31,11 @@ h3 {
     font-size:  18px;
     font-style: italic;
     margin:     20px 0 5px;
+}
+h4 {
+    font-size:  14px;
+    font-weight:bold;
+    margin:     10px 0;
 }
 
 p {
@@ -48,6 +53,11 @@ ul {
 li {
     list-style-type:    disc;
     margin-left:        1em;
+}
+
+img {
+    display:            block;
+    margin-bottom:      10px;
 }
 
 a {

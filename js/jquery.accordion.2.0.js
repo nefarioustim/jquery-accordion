@@ -59,13 +59,13 @@
                                                     duration:   defaults.speed,
                                                     easing:     defaults.easing,
                                                     queue:      false,
-                                                    complete:   function(){
+                                                    complete:   function(e) {
                                                         panel.addClass(defaults.activeClassPanel);
                                                         clickedLi.addClass(defaults.activeClassLi);
                                                     }
                                                 });
                                         })
-                                        .bind("panel-close", function(e, clickedLi) {
+                                        .bind("panel-close", function(e) {
                                             var panel = $(this);
                                             panel
                                                 .css({
@@ -80,12 +80,12 @@
                                                 }, {
                                                     duration:   defaults.speed,
                                                     easing:     defaults.easing,
-                                                    queue:      false, 
-                                                    complete:   function(){
+                                                    queue:      false,
+                                                    complete:   function(e) {
                                                         panel.removeClass(defaults.activeClassPanel).hide();
-                                                        clickedLi.removeClass(defaults.activeClassLi);
+                                                        panel.closest("li").removeClass(defaults.activeClassLi);
                                                     }
-                                                })
+                                                });
                                         });
                                         
                                     return el;
@@ -122,10 +122,10 @@
                 
                 if (!clickedLi.hasClass(defaults.lockedClass)) {
                     if (panel.is(":visible")) {
-                        if (defaults.toggle) panel.trigger("panel-close", [clickedLi]);
+                        if (defaults.toggle) panel.trigger("panel-close");
                     } else {
                         panel.trigger("panel-open", [clickedLi]);
-                        if (defaults.accordion) open.trigger("panel-close", [clickedLi]);
+                        if (defaults.accordion) open.trigger("panel-close");
                     }
                 }
             });
