@@ -1,3 +1,13 @@
+/*!
+ * jQuery Accordion widget
+ * http://nefariousdesigns.co.uk/projects/widgets/accordion/
+ * 
+ * Source code: http://github.com/nefarioustim/jquery-accordion/
+ *
+ * Copyright © 2010 Tim Huegdon
+ * http://timhuegdon.com
+ */
+ 
 (function($) {
     var debugMode = true;
     
