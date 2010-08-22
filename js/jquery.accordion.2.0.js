@@ -54,7 +54,8 @@
                                                     marginTop: panel.data("dimensions").marginTop,
                                                     marginBottom: panel.data("dimensions").marginBottom,
                                                     paddingTop: panel.data("dimensions").paddingTop,
-                                                    paddingBottom: panel.data("dimensions").paddingBottom
+                                                    paddingBottom: panel.data("dimensions").paddingBottom,
+                                                    opacity: 1
                                                 }, {
                                                     duration:   defaults.speed,
                                                     easing:     defaults.easing,
@@ -76,7 +77,8 @@
                                                     marginTop: 0,
                                                     marginBottom: 0,
                                                     paddingTop: 0,
-                                                    paddingBottom: 0
+                                                    paddingBottom: 0,
+                                                    opacity: 0
                                                 }, {
                                                     duration:   defaults.speed,
                                                     easing:     defaults.easing,
@@ -91,15 +93,32 @@
                                     return el;
                                 })
                                 .hide(),
-                handles     = accordion.find(">li>" + defaults.handle)
+                handles     = accordion.find(
+                                ">li>"
+                                + defaults.handle
+                            )
                                 .wrapInner('<a class="accordion-opener" href="#open-panel" />');
             
             accordion
-                .find("> li." + defaults.activeClassLi + " > " + defaults.panel + ", > li." + defaults.lockedClass + " > " + defaults.panel)
+                .find(
+                    "> li."
+                    + defaults.activeClassLi
+                    + " > "
+                    + defaults.panel
+                    + ", > li."
+                    + defaults.lockedClass
+                    + " > "
+                    + defaults.panel
+                )
                 .show()
                 .addClass(defaults.activeClassPanel);
             
-            var active = accordion.find("> li." + defaults.activeClassLi + ", > li." + defaults.lockedClass);
+            var active = accordion.find(
+                "> li."
+                + defaults.activeClassLi
+                + ", > li."
+                + defaults.lockedClass
+            );
             
             if (!defaults.toggle && active.length < 1) {
                 accordion
@@ -118,7 +137,14 @@
                 var clicked     = $(this),
                     clickedLi   = clicked.closest("li"),
                     panel       = clickedLi.find(">" + defaults.panel).first(),
-                    open        = accordion.find(">li:not(." + defaults.lockedClass + ")>" + defaults.panel + "." + defaults.activeClassPanel);
+                    open        = accordion.find(
+                        ">li:not(."
+                        + defaults.lockedClass
+                        + ")>"
+                        + defaults.panel
+                        + "."
+                        + defaults.activeClassPanel
+                    );
                 
                 if (!clickedLi.hasClass(defaults.lockedClass)) {
                     if (panel.is(":visible")) {
