@@ -36,6 +36,13 @@
         
         this.each(function() {
             var accordion   = $(this),
+                reset       = {
+                    height: 0,
+                    marginTop: 0,
+                    marginBottom: 0,
+                    paddingTop: 0,
+                    paddingBottom: 0
+                },
                 panels      = accordion.find(">li>" + defaults.panel)
                                 .each(function() {
                                     var el = $(this);
@@ -47,26 +54,12 @@
                                             paddingTop: el.css("paddingTop"),
                                             paddingBottom: el.css("paddingBottom")
                                         })
-                                        .bind("panel-open", function(e, clickedLi) {
+                                        .bind("accordion-panel-open", function(e, clickedLi) {
                                             var panel = $(this);
                                             panel
-                                                .css({
-                                                    height: 0,
-                                                    marginTop: 0,
-                                                    marginBottom: 0,
-                                                    paddingTop: 0,
-                                                    paddingBottom: 0,
-                                                    overflow: "hidden"
-                                                })
+                                                .css($.extend({overflow: "hidden"}, reset))
                                                 .show()
-                                                .animate({
-                                                    height: panel.data("dimensions").height,
-                                                    marginTop: panel.data("dimensions").marginTop,
-                                                    marginBottom: panel.data("dimensions").marginBottom,
-                                                    paddingTop: panel.data("dimensions").paddingTop,
-                                                    paddingBottom: panel.data("dimensions").paddingBottom,
-                                                    opacity: 1
-                                                }, {
+                                                .animate($.extend({opacity: 1}, panel.data("dimensions")), {
                                                     duration:   defaults.speed,
                                                     easing:     defaults.easing,
                                                     queue:      false,
@@ -76,20 +69,13 @@
                                                     }
                                                 });
                                         })
-                                        .bind("panel-close", function(e) {
+                                        .bind("accordion-panel-close", function(e) {
                                             var panel = $(this);
                                             panel
                                                 .css({
                                                     overflow: "hidden"
                                                 })
-                                                .animate({
-                                                    height: 0,
-                                                    marginTop: 0,
-                                                    marginBottom: 0,
-                                                    paddingTop: 0,
-                                                    paddingBottom: 0,
-                                                    opacity: 0
-                                                }, {
+                                                .animate($.extend({opacity: 0}, reset), {
                                                     duration:   defaults.speed,
                                                     easing:     defaults.easing,
                                                     queue:      false,
@@ -104,14 +90,14 @@
                                 })
                                 .hide(),
                 handles     = accordion.find(
-                                ">li>"
+                                " > li > "
                                 + defaults.handle
                             )
                                 .wrapInner('<a class="accordion-opener" href="#open-panel" />');
             
             accordion
                 .find(
-                    "> li."
+                    " > li."
                     + defaults.activeClassLi
                     + " > "
                     + defaults.panel
@@ -124,7 +110,7 @@
                 .addClass(defaults.activeClassPanel);
             
             var active = accordion.find(
-                "> li."
+                " > li."
                 + defaults.activeClassLi
                 + ", > li."
                 + defaults.lockedClass
@@ -132,7 +118,7 @@
             
             if (!defaults.toggle && active.length < 1) {
                 accordion
-                    .find("> li")
+                    .find(" > li")
                     .first()
                     .addClass(defaults.activeClassLi)
                     .find(" > " + defaults.panel)
@@ -148,9 +134,9 @@
                     clickedLi   = clicked.closest("li"),
                     panel       = clickedLi.find(">" + defaults.panel).first(),
                     open        = accordion.find(
-                        ">li:not(."
+                        " > li:not(."
                         + defaults.lockedClass
-                        + ")>"
+                        + ") > "
                         + defaults.panel
                         + "."
                         + defaults.activeClassPanel
@@ -158,10 +144,10 @@
                 
                 if (!clickedLi.hasClass(defaults.lockedClass)) {
                     if (panel.is(":visible")) {
-                        if (defaults.toggle) panel.trigger("panel-close");
+                        if (defaults.toggle) panel.trigger("accordion-panel-close");
                     } else {
-                        panel.trigger("panel-open", [clickedLi]);
-                        if (defaults.accordion) open.trigger("panel-close");
+                        panel.trigger("accordion-panel-open", [clickedLi]);
+                        if (defaults.accordion) open.trigger("accordion-panel-close");
                     }
                 }
             });
