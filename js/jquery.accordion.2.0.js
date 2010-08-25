@@ -32,7 +32,9 @@
             "lockedClass":      "locked"
         };
         
-        if (config) $.extend(defaults, config);
+        if (config) {
+            $.extend(defaults, config);
+        }
         
         this.each(function() {
             var accordion   = $(this),
@@ -54,7 +56,7 @@
                                             paddingTop: el.css("paddingTop"),
                                             paddingBottom: el.css("paddingBottom")
                                         })
-                                        .bind("accordion-panel-open", function(e, clickedLi) {
+                                        .bind("panel-open.accordion", function(e, clickedLi) {
                                             var panel = $(this);
                                             panel
                                                 .css($.extend({overflow: "hidden"}, reset))
@@ -69,7 +71,7 @@
                                                     }
                                                 });
                                         })
-                                        .bind("accordion-panel-close", function(e) {
+                                        .bind("panel-close.accordion", function(e) {
                                             var panel = $(this);
                                             panel
                                                 .css({
@@ -144,10 +146,14 @@
                 
                 if (!clickedLi.hasClass(defaults.lockedClass)) {
                     if (panel.is(":visible")) {
-                        if (defaults.toggle) panel.trigger("accordion-panel-close");
+                        if (defaults.toggle) {
+                            panel.trigger("panel-close");
+                        }
                     } else {
-                        panel.trigger("accordion-panel-open", [clickedLi]);
-                        if (defaults.accordion) open.trigger("accordion-panel-close");
+                        panel.trigger("panel-open", [clickedLi]);
+                        if (defaults.accordion) {
+                            open.trigger("panel-close");
+                        }
                     }
                 }
             });
