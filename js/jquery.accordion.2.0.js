@@ -50,11 +50,11 @@
                                     var el = $(this);
                                     el
                                         .data("dimensions", {
-                                            height: el.css("height"),
                                             marginTop: el.css("marginTop"),
                                             marginBottom: el.css("marginBottom"),
                                             paddingTop: el.css("paddingTop"),
-                                            paddingBottom: el.css("paddingBottom")
+                                            paddingBottom: el.css("paddingBottom"),
+                                            height: el.get(0).offsetHeight - parseInt(el.css("paddingTop")) - parseInt(el.css("paddingBottom"))
                                         })
                                         .bind("panel-open.accordion", function(e, clickedLi) {
                                             var panel = $(this);

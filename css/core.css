@@ -1,6 +1,7 @@
 html {
     background:                 #ccc;
-    filter:                     progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#ccc');
+    filter:                     progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff999999, endColorstr=#ffcccccc);
+    -ms-filter:                 "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff999999, endColorstr=#ffcccccc)";
     background:                 #ccc -webkit-gradient(linear, left top, left bottom, from(#999), to(#ccc)) no-repeat;
     background:                 #ccc -moz-linear-gradient(top,  #999,  #ccc) no-repeat;
     -moz-background-size:       100%, 100px;
@@ -10,7 +11,7 @@ html {
 
 body {
     color:      #666;
-    font:       14px/1.4 helvetica, "trebuchet ms", sans-serif;
+    font:       14px/1.4 "helvetica neue", arial, sans-serif;
     padding:    20px;
     text-align: center;
 }
