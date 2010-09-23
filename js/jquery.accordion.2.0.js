@@ -58,22 +58,25 @@
                                         })
                                         .bind("panel-open.accordion", function(e, clickedLi) {
                                             var panel = $(this);
+                                            clickedLi.addClass(defaults.activeClassLi);
                                             panel
                                                 .css($.extend({overflow: "hidden"}, reset))
+                                                .addClass(defaults.activeClassPanel)
                                                 .show()
                                                 .animate($.extend({opacity: 1}, panel.data("dimensions")), {
                                                     duration:   defaults.speed,
                                                     easing:     defaults.easing,
                                                     queue:      false,
                                                     complete:   function(e) {
-                                                        panel.addClass(defaults.activeClassPanel);
-                                                        clickedLi.addClass(defaults.activeClassLi);
+                                                        
                                                     }
                                                 });
                                         })
                                         .bind("panel-close.accordion", function(e) {
                                             var panel = $(this);
+                                            panel.closest("li").removeClass(defaults.activeClassLi);
                                             panel
+                                                .removeClass(defaults.activeClassPanel)
                                                 .css({
                                                     overflow: "hidden"
                                                 })
@@ -82,8 +85,7 @@
                                                     easing:     defaults.easing,
                                                     queue:      false,
                                                     complete:   function(e) {
-                                                        panel.removeClass(defaults.activeClassPanel).hide();
-                                                        panel.closest("li").removeClass(defaults.activeClassLi);
+                                                        panel.hide();
                                                     }
                                                 });
                                         });
