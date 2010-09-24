@@ -54,7 +54,7 @@
                                             marginBottom: el.css("marginBottom"),
                                             paddingTop: el.css("paddingTop"),
                                             paddingBottom: el.css("paddingBottom"),
-                                            height: el.get(0).offsetHeight - parseInt(el.css("paddingTop")) - parseInt(el.css("paddingBottom"))
+                                            height: this.offsetHeight - parseInt(el.css("paddingTop")) - parseInt(el.css("paddingBottom"))
                                         })
                                         .bind("panel-open.accordion", function(e, clickedLi) {
                                             var panel = $(this);
@@ -63,12 +63,14 @@
                                                 .css($.extend({overflow: "hidden"}, reset))
                                                 .addClass(defaults.activeClassPanel)
                                                 .show()
-                                                .animate($.extend({opacity: 1}, panel.data("dimensions")), {
+                                                .animate($.browser.msie && parseInt($.browser.version) < 8 ? panel.data("dimensions") : $.extend({opacity: 1}, panel.data("dimensions")), {
                                                     duration:   defaults.speed,
                                                     easing:     defaults.easing,
                                                     queue:      false,
                                                     complete:   function(e) {
-                                                        
+                                                        if ($.browser.msie) {
+                                                            this.style.removeAttribute('filter');
+                                                        }
                                                     }
                                                 });
                                         })
@@ -80,16 +82,19 @@
                                                 .css({
                                                     overflow: "hidden"
                                                 })
-                                                .animate($.extend({opacity: 0}, reset), {
+                                                .animate($.browser.msie && parseInt($.browser.version) < 8 ? reset : $.extend({opacity: 0}, reset), {
                                                     duration:   defaults.speed,
                                                     easing:     defaults.easing,
                                                     queue:      false,
                                                     complete:   function(e) {
+                                                        if ($.browser.msie) {
+                                                            this.style.removeAttribute('filter');
+                                                        }
                                                         panel.hide();
                                                     }
                                                 });
                                         });
-                                        
+                                    
                                     return el;
                                 })
                                 .hide(),
