@@ -21,15 +21,16 @@
     
     $.fn.accordion = function(config) {
         var defaults = {
-            "handle":           "h3",
-            "panel":            ".panel",
-            "speed":            200,
-            "easing":           "swing",
-            "canOpenMultiple":  false,
-            "canToggle":        false,
+            "handle": "h3",
+            "panel": ".panel",
+            "speed": 200,
+            "easing": "swing",
+            "canOpenMultiple": false,
+            "canToggle": false,
             "activeClassPanel": "open",
-            "activeClassLi":    "active",
-            "lockedClass":      "locked"
+            "activeClassLi": "active",
+            "lockedClass": "locked",
+            "loadingClass": "loading"
         };
         
         if (config) {
@@ -39,16 +40,20 @@
         this.each(function() {
             var accordion   = $(this),
                 reset       = {
-                    height:         0,
-                    marginTop:      0,
-                    marginBottom:   0,
-                    paddingTop:     0,
-                    paddingBottom:  0
+                    height: 0,
+                    marginTop: 0,
+                    marginBottom: 0,
+                    paddingTop: 0,
+                    paddingBottom: 0
                 },
                 panels      = accordion.find(">li>" + defaults.panel)
                                 .each(function() {
                                     var el = $(this);
                                     el
+                                        .removeClass(defaults.loadingClass)
+                                        .data("pos", el.css("position"))
+                                        .css("position", "absolute")
+                                        .css("visibility", "hidden")
                                         .data("dimensions", {
                                             marginTop:      el.css("marginTop"),
                                             marginBottom:   el.css("marginBottom"),
@@ -93,11 +98,13 @@
                                                         panel.hide();
                                                     }
                                                 });
-                                        });
+                                        })
+                                        .hide()
+                                        .css("position", el.data("pos"))
+                                        .css("visibility", "visible");
                                     
                                     return el;
-                                })
-                                .hide(),
+                                }),
                 handles     = accordion.find(
                                 " > li > "
                                 + defaults.handle

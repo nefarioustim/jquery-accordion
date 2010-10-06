@@ -1,26 +1,29 @@
 ul.accordion,
 ol.accordion {
-    margin:             0;
-    padding:            0;
+    margin: 0;
+    padding: 0;
 }
 .accordion li {
-    list-style-type:    none;
-    margin:             0;
-    padding:            0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
-    .accordion li:after {
-        content:        ".";
-        display:        block;
-        height:         0;
-        clear:          both;
-        visibility:     hidden;
-        *zoom:          1;
-    }
+.accordion li:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    *zoom: 1;
+}
 .accordion li li {
-    list-style-type:    disc;
-    margin-left:        1em;
+    list-style-type: disc;
+    margin-left: 1em;
 }
 .accordion a {
-    color:              inherit;
-    text-decoration:    inherit;
+    color: inherit;
+    text-decoration: inherit;
+}
+.accordion .loading {
+    display: none;
 }

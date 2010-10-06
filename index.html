@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="css/core.css" type="text/css" charset="utf-8">
         <link rel="stylesheet" href="css/accordion.core.css" type="text/css" charset="utf-8">
         <style type="text/css">
+            .loading {
+                display: none;
+            }
             .accordion {
                 border: 1px solid #ccc;
                 width:  50%;
@@ -64,14 +67,14 @@
             <ul id="example1" class="accordion">
                 <li>
                     <h3>Handle 1</h3>
-                    <div class="panel">
-                        <h4>Panel 1</h4>
+                    <div class="panel loading">
+                        <h4>panel loading 1</h4>
                         <p>Plain old heading and paragraph content.</p>
                     </div>
                 </li>
                 <li>
                     <h3>Handle 2</h3>
-                    <ul class="panel">
+                    <ul class="panel loading">
                         <li>How about&hellip;</li>
                         <li>&hellip; a list &hellip;</li>
                         <li>&hellip; of items?</li>
@@ -79,13 +82,13 @@
                 </li>
                 <li>
                     <h3>Handle 3</h3>
-                    <p class="panel">
+                    <p class="panel loading">
                         <img src="img/spa.png" alt="" width="220" height="220"> An image in a paragraph.
                     </p>
                 </li>
                 <li>
                     <h3>Handle 4</h3>
-                    <div class="panel">
+                    <div class="panel loading">
                         <h4>A nested list of items</h4>
                         <ul>
                             <li>Item 1</li>
@@ -111,14 +114,14 @@
             <ul id="example2" class="accordion">
                 <li>
                     <h3>Handle 1</h3>
-                    <div class="panel">
-                        <h4>Panel 1</h4>
+                    <div class="panel loading">
+                        <h4>panel loading 1</h4>
                         <p>Plain old heading and paragraph content.</p>
                     </div>
                 </li>
                 <li>
                     <h3>Handle 2</h3>
-                    <ul class="panel">
+                    <ul class="panel loading">
                         <li>How about&hellip;</li>
                         <li>&hellip; a list &hellip;</li>
                         <li>&hellip; of items?</li>
@@ -126,13 +129,13 @@
                 </li>
                 <li>
                     <h3>Handle 3</h3>
-                    <p class="panel">
+                    <p class="panel loading">
                         <img src="img/spa.png" alt="" width="220" height="220"> An image in a paragraph.
                     </p>
                 </li>
                 <li>
                     <h3>Handle 4</h3>
-                    <div class="panel">
+                    <div class="panel loading">
                         <h4>A nested list of items</h4>
                         <ul>
                             <li>Item 1</li>
@@ -161,14 +164,14 @@
             <ul id="example3" class="accordion">
                 <li class="locked">
                     <h3>Handle 1</h3>
-                    <div class="panel">
-                        <h4>Panel 1 (Locked open)</h4>
+                    <div class="panel loading">
+                        <h4>panel loading 1 (Locked open)</h4>
                         <p>Plain old heading and paragraph content.</p>
                     </div>
                 </li>
                 <li>
                     <h3>Handle 2</h3>
-                    <ul class="panel">
+                    <ul class="panel loading">
                         <li>How about&hellip;</li>
                         <li>&hellip; a list &hellip;</li>
                         <li>&hellip; of items?</li>
@@ -176,13 +179,13 @@
                 </li>
                 <li>
                     <h3>Handle 3</h3>
-                    <p class="panel">
+                    <p class="panel loading">
                         <img src="img/spa.png" alt="" width="220" height="220"> An image in a paragraph.
                     </p>
                 </li>
                 <li>
                     <h3>Handle 4</h3>
-                    <div class="panel">
+                    <div class="panel loading">
                         <h4>A nested list of items</h4>
                         <ul>
                             <li>Item 1</li>
@@ -209,14 +212,14 @@
             <ul id="example4" class="accordion">
                 <li>
                     <h3>Handle 1</h3>
-                    <div class="panel">
-                        <h4>Panel 1</h4>
+                    <div class="panel loading">
+                        <h4>panel loading 1</h4>
                         <p>Plain old heading and paragraph content.</p>
                     </div>
                 </li>
                 <li>
                     <h3>Handle 2</h3>
-                    <ul class="panel">
+                    <ul class="panel loading">
                         <li>How about&hellip;</li>
                         <li>&hellip; a list &hellip;</li>
                         <li>&hellip; of items?</li>
@@ -224,13 +227,13 @@
                 </li>
                 <li>
                     <h3>Handle 3</h3>
-                    <p class="panel">
+                    <p class="panel loading">
                         <img src="img/spa.png" alt="" width="220" height="220"> An image in a paragraph.
                     </p>
                 </li>
                 <li>
                     <h3>Handle 4</h3>
-                    <div class="panel">
+                    <div class="panel loading">
                         <h4>A nested list of items</h4>
                         <ul>
                             <li>Item 1</li>
@@ -261,6 +264,7 @@
                 canToggle: true,
                 canOpenMultiple: true
             });
+            $(".loading").removeClass("loading");
         </script>
     </body>
 </html>
