@@ -9,7 +9,7 @@
  */
  
 (function($) {
-    var debugMode = true;
+    var debugMode = false;
     
     function debug(msg) {
         if(debugMode && window.console && window.console.log){
@@ -25,8 +25,8 @@
             "panel":            ".panel",
             "speed":            200,
             "easing":           "swing",
-            "accordion":        true,
-            "toggle":           false,
+            "canOpenMultiple":  false,
+            "canToggle":        false,
             "activeClassPanel": "open",
             "activeClassLi":    "active",
             "lockedClass":      "locked"
@@ -39,22 +39,22 @@
         this.each(function() {
             var accordion   = $(this),
                 reset       = {
-                    height: 0,
-                    marginTop: 0,
-                    marginBottom: 0,
-                    paddingTop: 0,
-                    paddingBottom: 0
+                    height:         0,
+                    marginTop:      0,
+                    marginBottom:   0,
+                    paddingTop:     0,
+                    paddingBottom:  0
                 },
                 panels      = accordion.find(">li>" + defaults.panel)
                                 .each(function() {
                                     var el = $(this);
                                     el
                                         .data("dimensions", {
-                                            marginTop: el.css("marginTop"),
-                                            marginBottom: el.css("marginBottom"),
-                                            paddingTop: el.css("paddingTop"),
-                                            paddingBottom: el.css("paddingBottom"),
-                                            height: this.offsetHeight - parseInt(el.css("paddingTop")) - parseInt(el.css("paddingBottom"))
+                                            marginTop:      el.css("marginTop"),
+                                            marginBottom:   el.css("marginBottom"),
+                                            paddingTop:     el.css("paddingTop"),
+                                            paddingBottom:  el.css("paddingBottom"),
+                                            height:         this.offsetHeight - parseInt(el.css("paddingTop")) - parseInt(el.css("paddingBottom"))
                                         })
                                         .bind("panel-open.accordion", function(e, clickedLi) {
                                             var panel = $(this);
@@ -125,7 +125,7 @@
                 + defaults.lockedClass
             );
             
-            if (!defaults.toggle && active.length < 1) {
+            if (!defaults.canToggle && active.length < 1) {
                 accordion
                     .find(" > li")
                     .first()
@@ -153,12 +153,12 @@
                 
                 if (!clickedLi.hasClass(defaults.lockedClass)) {
                     if (panel.is(":visible")) {
-                        if (defaults.toggle) {
+                        if (defaults.canToggle) {
                             panel.trigger("panel-close");
                         }
                     } else {
                         panel.trigger("panel-open", [clickedLi]);
-                        if (defaults.accordion) {
+                        if (!defaults.canOpenMultiple) {
                             open.trigger("panel-close");
                         }
                     }
