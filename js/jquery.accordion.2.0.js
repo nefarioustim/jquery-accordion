@@ -51,8 +51,6 @@
                                     var el = $(this);
                                     el
                                         .removeClass(defaults.loadingClass)
-                                        .data("pos", el.css("position"))
-                                        .css("position", "absolute")
                                         .css("visibility", "hidden")
                                         .data("dimensions", {
                                             marginTop:      el.css("marginTop"),
@@ -100,7 +98,6 @@
                                                 });
                                         })
                                         .hide()
-                                        .css("position", el.data("pos"))
                                         .css("visibility", "visible");
                                     
                                     return el;
