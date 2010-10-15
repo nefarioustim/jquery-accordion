@@ -74,6 +74,7 @@
                                                         if ($.browser.msie) {
                                                             this.style.removeAttribute('filter');
                                                         }
+                                                        $(this).removeAttr("style");
                                                     }
                                                 });
                                         })
