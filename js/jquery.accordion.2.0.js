@@ -12,7 +12,8 @@
     var debugMode = false;
     
     function debug(msg) {
-        if(debugMode && window.console && window.console.log){
+        if (!debugMode) { return; }
+        if (window.console && window.console.log){
             window.console.log(msg);
         } else {
             alert(msg);
